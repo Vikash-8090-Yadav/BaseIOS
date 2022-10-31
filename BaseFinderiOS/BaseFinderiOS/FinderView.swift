@@ -10,33 +10,86 @@ import SwiftUI
 var basePath: String = "/"
 
 struct FinderView: View {
-    @State var currentPath: String = basePath
+    @State var currentPath: String = basePath {
+        didSet {
+            displayedPath = currentPath
+        }
+    }
+    @State var displayedPath: String = basePath
     @State var directories: [String] = []
+    @State private var searchText = ""
+    @State var errorMessage: String = ""
     var body: some View {
-        HStack {
+        VStack {
             Button {
-                do {
-                    print(currentPath)
+                if (currentPath != basePath) {
                     currentPath = "\((URL(string: currentPath)?.deletingLastPathComponent().absoluteString)!)"
-                    print(currentPath)
-                    directories = try getFilesInDirectory(path: currentPath)
-                } catch {
-                    print(error)
+                }
+                var result: Bool
+                (directories, result) = getFilesInDirectory(path: currentPath)
+                if (!result) {
+                    errorMessage = "Can't access to this directory"
+                } else {
+                    if (directories.count < 1) {
+                        errorMessage = "Diretory empty"
+                    }
+                    errorMessage = ""
                 }
             } label: {
                 Image(systemName: "arrow.left")
                     .padding()
             }
+            HStack (spacing: 10) {
+                RoundedRectangle(cornerRadius: 10).foregroundColor(Color.gray).opacity(0.2).frame(height: 35).overlay(content: {
+                    TextField("Your library", text: $displayedPath)
+                        .disableAutocorrection(true)
+                        .padding()
+                })
+                Button {
+                    var result: Bool
+                    (directories, result) = getFilesInDirectory(path: currentPath)
+                    if (!result) {
+                        errorMessage = "Can't access to this directory"
+                    } else {
+                        if (directories.count < 1) {
+                            errorMessage = "Diretory empty"
+                            currentPath = displayedPath
+                        }
+                        errorMessage = ""
+                        currentPath = displayedPath
+                    }
+                } label: {
+                    Text("Go")
+                }
+                .buttonStyle(.borderless)
+            }
+            .padding()
+            .padding()
             NavigationView {
                 ScrollView {
-                    ForEach(directories, id: \.self) { dir in
-                        Button {
-                            do {
-                                directories = try getFilesInDirectory(path:  "\(basePath)\(dir)")
-                                currentPath = "\(currentPath)\(dir)/"
-                            } catch {
-                                print(error)
+                    ForEach(directories.filter { dir in
+                        if (searchText == "") {
+                            return true
+                        } else {
+                            if dir.contains(searchText) {
+                                return true
+                            } else {
+                                return false
                             }
+                        }
+                    }, id: \.self) { dir in
+                        Button {
+                            var result: Bool
+                            (directories, result) = getFilesInDirectory(path:  "\(basePath)\(dir)")
+                            if (!result) {
+                                errorMessage = "Can't access to this directory"
+                            } else {
+                                if (directories.count < 1) {
+                                    errorMessage = "Diretory empty"
+                                }
+                                errorMessage = ""
+                            }
+                            currentPath = "\(currentPath)\(dir)/"
                         } label: {
                             Text(dir)
                                 .contextMenu {
@@ -51,14 +104,24 @@ struct FinderView: View {
                         .buttonStyle(.bordered)
                     }
                     .onAppear {
-                        do {
-                            directories = try getFilesInDirectory(path: basePath)
-                        } catch {
-                            print(error)
+                        var result: Bool
+                        (directories, result) = getFilesInDirectory(path: currentPath)
+                        if (!result) {
+                            errorMessage = "Can't access to this directory"
+                        } else {
+                            if (directories.count < 1) {
+                                errorMessage = "Diretory empty"
+                            }
+                            errorMessage = ""
                         }
                     }
                 }
+                .frame(alignment: .leading)
             }
+            .searchable(text: $searchText)
+            Text(errorMessage)
+                .foregroundColor(.red)
+                .padding()
         }
     }
 }
