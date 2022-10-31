@@ -8,14 +8,14 @@
 # How  to contribute 
 
 
-- Take a look at the existing [Issues](https://github.com/ssurbhi09/Github-Automation/issues) or [create a new issue](https://github.com/Vikash-8090-Yadav/Solidity-Pathshala/issues/new)!
+- Take a look at the existing [Issues](https://github.com/Vikash-8090-Yadav/BaseIOS/issues/) or [create a new issue](https://github.com/Vikash-8090-Yadav/BaseIOS/issues/new)!
 - [Fork the Repo](https://github.com/Vikash-8090-Yadav/Github-Automation/issues/new/fork), create a branch for any issue that you are working on and commit your work.
 - Create a **[Pull Request](CodingEasy)** (_PR_), which will be promptly reviewed and given suggestions for improvements by the community.
 - Add screenshots or screen captures to your Pull Request to help us understand the effects of the changes that are included in your commits.
 
 ## How to make a Pull Request?
 
-**1.** Start by making a fork the [**Solidity-pathshala**](https://github.com/Vikash-8090-Yadav/Solidity-Pathshala) repository. Click on the <a href="https://github.com/Vikash-8090-Yadav/Solidity-Pathshala/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
+**1.** Start by making a fork the [**BaseIOS**](https://github.com/Vikash-8090-Yadav/Solidity-Pathshala) repository. Click on the <a href="https://github.com/Vikash-8090-Yadav/BaseIOS/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
 
 **2.** Clone your new fork of the repository:
 
@@ -32,7 +32,7 @@ cd Solidity-Pathshala
 **4.** Set upstream command:
 
 ```bash
-git remote add upstream https://github.com/Vikash-8090-Yadav/Solidity-Pathshala.git
+git remote add upstream https://github.com/Vikash-8090-Yadav/BaseIOS.git
 ```
 
 **5.** Create a new branch:
@@ -87,8 +87,8 @@ git push origin YourBranchName
 </br>
 
 ### Project Contributors
-<a href="https://github.com/Vikash-8090-Yadav/Solidity-Pathshala/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=Vikash-8090-Yadav/Solidity-Pathshala" />
+<a href="https://github.com/Vikash-8090-Yadav/BaseIOS/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=Vikash-8090-Yadav/BaseIOS" />
 </a>
 
 <p align = "center">
