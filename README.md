@@ -26,7 +26,7 @@ git clone https://github.com/<your-github-username>/BASEios
 **3.** Navigate to the new project directory:
 
 ```bash
-cd Solidity-Pathshala
+cd BaseIOS
 ```
 
 **4.** Set upstream command:
