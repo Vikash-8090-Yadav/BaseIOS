@@ -40,6 +40,11 @@ git remote add upstream https://github.com/Vikash-8090-Yadav/BaseIOS.git
 ```bash
 git checkout -b YourBranchName
 ```
+<i>or</i>
+```bash
+git branch YourBranchName
+git switch YourBranchName
+```
 
 **6.** Sync your fork or local repository with the origin repository:
 
@@ -73,6 +78,10 @@ git add file/folder
 ```bash
 git commit -m "<your_commit_message>"
 ```
+<i>or</i>
+```bash
+git commit -a
+```
 
 **9.** Push your local commits to the remote repository:
 
@@ -81,6 +90,9 @@ git push origin YourBranchName
 ```
 
 **10.** Create a [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)!
+```bash
+git pull
+```
 
 **11.** **Congratulations!** You've made your first contribution! 🙌🏼
 
